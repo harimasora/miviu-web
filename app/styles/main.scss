@@ -69,10 +69,80 @@ body {
   }
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .active {
   a {
     color: $miviu-link-selected-color;
   }
+}
+
+/*==========  Profile  ==========*/
+
+.profile {
+  background-image: url('../images/profile.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  flex-grow: 1;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $miviu-img-overlay-color-alpha;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+
+  font-size: 1.4em;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+
+  color: $miviu-btn-text-color;
+
+  .name {
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
+  .email {
+    margin-top: 10px;
+
+  }
+
+  .phone {
+    font-size: 1.7em;
+  }
+
+  .object {
+    text-transform: capitalize;
+  }
+}
+
+.img-round-sm {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  border: solid 3px #FFF;
+  background-image: url("../images/profile.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  flex-grow: 3;
 }
 
 /*==========  Mobile First Method  ==========*/
