@@ -1,6 +1,12 @@
 // bower:scss
 // endbower
 
+@import "variables";
+
+* {
+  font-family: Avenir, serif;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -9,81 +15,91 @@
 }
 
 body {
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
 .header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: $miviu-nav-bg-color-dark;
+}
 
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+.header-logo {
+  align-self: center;
+
+  img {
+    width: 103px;
+    height: 89px;
   }
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
+.main-nav {
+  display: flex;
+  justify-content: center;
+  padding: 0;
 
-.container-narrow > hr {
-  margin: 30px 0;
-}
+  a {
+    text-decoration: none;
+    color: $miviu-link-default-color;
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+    &:hover {
+      color: $miviu-link-selected-color;
+    }
+  }
 
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+  li {
+    list-style-type: none;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    line-height: 45px;
+    padding: 0 10px;
+
+    &:before {
+      content: '·';
+      color: $miviu-link-default-color;
+      position: relative;
+      left: -10px;
+    }
+
+    &:first-child:before {
+      display: none;
+    }
   }
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
+.active {
+  a {
+    color: $miviu-link-selected-color;
   }
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
+/*==========  Mobile First Method  ==========*/
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  body {
+    flex-direction: row;
   }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
 }

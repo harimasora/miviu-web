@@ -9,6 +9,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -17,38 +18,23 @@
   </head>
   <body ng-app="miviuApp">
     <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <p class="browsehappy">Você está usando um navegador <strong>desatualizado</strong>. Por favor <a href="http://browsehappy.com/">atualize seu navegador</a> para melhorar sua experiência.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <a class="navbar-brand" href="/">miviu</a>
-          </div>
-
-          <div class="collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a ng-href="/about">About</a></li>
-              <li><a ng-href="/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
+    <div class="header" ng-controller="HeaderController">
+      <div class="header-logo">
+        <a ng-href="/"><img src="images/yeoman.png" alt="Miviu logotype"></a>
       </div>
+      <ul class="main-nav">
+        <li ng-class="{ active: isActive('/profile')}"><a ng-href="/profile">Perfil</a></li>
+        <li ng-class="{ active: isActive('/objects')}"><a ng-href="/objects">Objetos</a></li>
+        <li ng-class="{ active: isActive('/search')}"><a ng-href="/search">Buscar</a></li>
+      </ul>
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+      <div ng-view=""></div>
     </div>
 
 
@@ -80,6 +66,9 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/controllers/search.js"></script>
+        <script src="scripts/controllers/objects.js"></script>
+        <script src="scripts/controllers/header.js"></script>
         <!-- endbuild -->
 </body>
 </html>

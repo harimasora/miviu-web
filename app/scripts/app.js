@@ -35,6 +35,16 @@ angular
         controller: 'ProfileCtrl',
         controllerAs: 'profile'
       })
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+        controllerAs: 'search'
+      })
+      .when('/objects', {
+        templateUrl: 'views/objects.html',
+        controller: 'ObjectsCtrl',
+        controllerAs: 'objects'
+      })
       .otherwise({
         redirectTo: '/'
       });
