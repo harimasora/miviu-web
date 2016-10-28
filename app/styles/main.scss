@@ -73,10 +73,10 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-}
 
-.container > div {
-  flex-grow: 1;
+  & > div {
+    flex-grow: 1;
+  }
 }
 
 .active {
@@ -147,6 +147,77 @@ body {
   background-position: 50% 50%;
 
   flex-grow: 3;
+}
+
+/*==========  Objects  ==========*/
+
+.green-bg {
+  background-color: $miviu-green-bg-color-alpha;
+}
+
+.search-header-area {
+
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    text-transform: uppercase;
+    color: $miviu-btn-text-color
+  }
+
+}
+
+.search-main-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .search-area {
+    display: flex;
+    flex-wrap: wrap;
+    color: $miviu-link-default-color;
+    text-align: center;
+
+    span {
+      color: $miviu-btn-text-color;
+    }
+  }
+
+  .search-input {
+    background-color: transparent;
+    border: solid 5px black;
+  }
+
+  & > p {
+    text-align: center;
+    color: $miviu-btn-text-color;
+  }
+}
+
+.search-logo-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .search-logo-box {
+    position: relative;
+  }
+
+  .search-logo {
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    z-index: 1;
+    max-height: 100px;
+  }
+
+  .search-logo-overlay {
+
+    background-color: #FFF;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+  }
 }
 
 /*==========  Mobile First Method  ==========*/
