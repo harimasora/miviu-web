@@ -23,11 +23,12 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  background-color: $miviu-nav-bg-color-dark;
+  background-color: #FFF;
 }
 
 .header-logo {
   align-self: center;
+  margin-top: 16px;
 
   img {
     width: 103px;
