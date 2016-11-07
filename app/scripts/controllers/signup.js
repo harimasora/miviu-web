@@ -8,10 +8,17 @@
  * Controller of the miviuApp
  */
 angular.module('miviuApp')
-  .controller('SignupCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('SignupCtrl', [ "$scope", "$location", "Auth", function ($scope, $location, Auth) {
+
+    $scope.user = {};
+
+    $scope.createUser = function() {
+      Auth.$createUserWithEmailAndPassword($scope.user.email, $scope.user.password)
+        .then(function(firebaseUser) {
+          $location.path("/profile");
+        }).catch(function(error) {
+        $scope.error = error;
+      });
+    };
+
+  }]);

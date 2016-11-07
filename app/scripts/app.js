@@ -15,8 +15,20 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'firebase'
   ])
+
+  .run(["$rootScope", "$location", function($rootScope, $location) {
+    $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+      // We can catch the error thrown when the $requireSignIn promise is rejected
+      // and redirect the user back to the home page
+      if (error === "AUTH_REQUIRED") {
+        $location.path("/");
+      }
+    });
+  }])
+
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider
@@ -25,15 +37,15 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
       .when('/profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl',
-        controllerAs: 'profile'
+        controllerAs: 'profile',
+        resolve: {
+          "currentAuth": ["Auth", function(Auth) {
+            return Auth.$requireSignIn();
+          }]
+        }
       })
       .when('/search', {
         templateUrl: 'views/search.html',
@@ -43,7 +55,12 @@ angular
       .when('/objects', {
         templateUrl: 'views/objects.html',
         controller: 'ObjectsCtrl',
-        controllerAs: 'objects'
+        controllerAs: 'objects',
+        resolve: {
+          "currentAuth": ["Auth", function(Auth) {
+            return Auth.$requireSignIn();
+          }]
+        }
       })
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -58,4 +75,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+
+  // let's create a re-usable factory that generates the $firebaseAuth instance
+  .factory("Auth", ["$firebaseAuth",
+    function($firebaseAuth) {
+      return $firebaseAuth();
+    }
+  ]);

@@ -10,19 +10,19 @@
   <div class="login-main-area">
     <form class="login-form">
       <label for="nameInput">Nome</label>
-      <input type="text" id="nameInput">
+      <input type="text" id="nameInput" ng-model="user.name">
       <label for="emailInput">Email</label>
-      <input type="text" id="emailInput">
+      <input type="text" id="emailInput" ng-model="user.email">
       <label for="passwordInput">Senha</label>
-      <input type="password" id="passwordInput">
+      <input type="password" id="passwordInput" ng-model="user.password">
       <label for="confirmPasswordInput">Confirmar Senha</label>
-      <input type="password" id="confirmPasswordInput">
+      <input type="password" id="confirmPasswordInput" ng-model="user.passwordConfirmation">
       <label for="phonePrefixInput">Número</label>
-      <input type="password" id="phonePrefixInput">
-      <input type="password" id="phoneInput">
+      <input type="password" id="phonePrefixInput" ng-model="user.phonePrefix">
+      <input type="password" id="phoneInput" ng-model="user.phone">
       <div class="btn-signup-group">
         <a ng-href="/login">Cancelar</a>
-        <a href="">Confirmar</a>
+        <a href="" ng-click="createUser()">Confirmar</a>
       </div>
     </form>
   </div>

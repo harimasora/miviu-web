@@ -57,13 +57,32 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+
+    <!-- Firebase -->
+    <script src="/bower_components/firebase/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="/bower_components/angularfire/dist/angularfire.min.js"></script>
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyC1M1xCoDIracBBPxHBmKsd6reEogz0SS8",
+        authDomain: "miviu-3d5b9.firebaseapp.com",
+        databaseURL: "https://miviu-3d5b9.firebaseio.com",
+        storageBucket: "miviu-3d5b9.appspot.com",
+        messagingSenderId: "17525185385"
+      };
+      firebase.initializeApp(config);
+    </script>
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/profile.js"></script>
         <script src="scripts/controllers/search.js"></script>
         <script src="scripts/controllers/objects.js"></script>
