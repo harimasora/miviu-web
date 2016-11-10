@@ -27,6 +27,7 @@ angular.module('miviuApp')
     $scope.signInWithProvider = function(provider) {
       Auth.$signInWithPopup(provider).then(function(result) {
         console.log("Signed in as:", result.user.uid);
+        $location.path('/profile');
       }).catch(function(error) {
         console.error("Authentication failed:", error);
       });
