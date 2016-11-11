@@ -6,9 +6,9 @@
     <h3>Login</h3>
     <form class="login-form">
       <label for="emailInput">Email</label>
-      <input type="text" id="emailInput" ng-model="user.email" required>
+      <input type="text" id="emailInput" ng-model="credentials.email" required>
       <label for="passwordInput">Senha</label>
-      <input type="password" id="passwordInput" ng-model="user.password" required>
+      <input type="password" id="passwordInput" ng-model="credentials.password" required>
       <div class="login-providers">
         <a href="" ng-click="signInWithProvider('facebook')">Facebook</a>
         <a href="" ng-click="signInWithProvider('google')">Gmail</a>

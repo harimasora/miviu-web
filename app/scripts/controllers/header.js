@@ -10,6 +10,8 @@
 angular.module('miviuApp')
   .controller('HeaderController', function ($scope, $location, Auth) {
 
+    $scope.currentAuth = null;
+
     Auth.$onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.

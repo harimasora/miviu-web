@@ -16,7 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'firebase'
+    'firebase',
+    'ngFileUpload',
   ])
 
   .run(["$rootScope", "$location", function($rootScope, $location) {

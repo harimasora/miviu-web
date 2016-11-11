@@ -1,25 +1,27 @@
 <div class="container">
   <div class="signup-image-area">
-    <div class="img-round-sm"></div>
-    <button type="button">Upload Photo</button>
+    <div ng-if="!picFile" class="img-round-sm"></div>
+    <div ng-if="picFile" ngf-background="picFile" class="img-round-sm"></div>
+    <button ngf-select ng-model="picFile" name="file" ngf-capture="'camera'" ngf-keep="false" accept="image/*">Upload Photo</button>
+    <button ng-click="picFile = null" ng-show="picFile">Remove</button>
     <div class="login-providers">
-      <a href="">Facebook</a>
-      <a href="">Gmail</a>
+      <a href="" ng-click="signInWithProvider('facebook')">Facebook</a>
+      <a href="" ng-click="signInWithProvider('google')">Gmail</a>
     </div>
   </div>
   <div class="login-main-area">
     <form class="login-form">
       <label for="nameInput">Nome</label>
-      <input type="text" id="nameInput" ng-model="user.name">
+      <input type="text" id="nameInput" ng-model="credentials.name">
       <label for="emailInput">Email</label>
-      <input type="text" id="emailInput" ng-model="user.email">
+      <input type="text" id="emailInput" ng-model="credentials.email">
       <label for="passwordInput">Senha</label>
-      <input type="password" id="passwordInput" ng-model="user.password">
+      <input type="password" id="passwordInput" ng-model="credentials.password">
       <label for="confirmPasswordInput">Confirmar Senha</label>
-      <input type="password" id="confirmPasswordInput" ng-model="user.passwordConfirmation">
+      <input type="password" id="confirmPasswordInput" ng-model="credentials.passwordConfirmation">
       <label for="phonePrefixInput">Número</label>
-      <input type="password" id="phonePrefixInput" ng-model="user.phonePrefix">
-      <input type="password" id="phoneInput" ng-model="user.phone">
+      <input type="text" id="phonePrefixInput" ng-model="credentials.phonePrefix">
+      <input type="text" id="phoneInput" ng-model="credentials.phone">
       <div class="btn-signup-group">
         <a ng-href="/login">Cancelar</a>
         <a href="" ng-click="createUser()">Confirmar</a>

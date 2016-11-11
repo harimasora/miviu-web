@@ -8,17 +8,48 @@
  * Controller of the miviuApp
  */
 angular.module('miviuApp')
-  .controller('LoginCtrl', ["$scope", "$location", "Auth", function ($scope, $location, Auth) {
+  .controller('LoginCtrl', function ($scope, $location, Profile, Auth) {
 
-    $scope.user = {};
+    $scope.credentials = {};
+
+    function saveUserToFirebase(user) {
+      // Create profile on /users
+      $scope.profile = Profile(user.uid);
+
+      function buildProfile() {
+        $scope.profile.email = user.email;
+        //Set new name from provider or keep current
+        if (user.displayName) {
+          $scope.profile.name = user.displayName;
+        }
+        //Keep photo if any
+        if (!$scope.profile.photoURL) {
+          $scope.profile.photoURL = user.photoURL;
+        }
+      }
+      function save() {
+        $scope.profile.$save()
+          .then(function () {
+            $location.path('/profile');
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      }
+
+      $scope.profile.$loaded()
+        .then(function () {
+          buildProfile();
+          save();
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+    }
 
     $scope.signIn = function() {
-      $scope.firebaseUser = null;
-      $scope.error = null;
-
-      Auth.$signInWithEmailAndPassword($scope.user.email, $scope.user.password).then(function(firebaseUser) {
-        console.log("Signed in as:", firebaseUser.uid);
-        $location.path('/profile');
+      Auth.$signInWithEmailAndPassword($scope.credentials.email, $scope.credentials.password).then(function(firebaseUser) {
+        saveUserToFirebase(firebaseUser);
       }).catch(function(error) {
         console.error("Authentication failed:", error);
       });
@@ -26,11 +57,10 @@ angular.module('miviuApp')
 
     $scope.signInWithProvider = function(provider) {
       Auth.$signInWithPopup(provider).then(function(result) {
-        console.log("Signed in as:", result.user.uid);
-        $location.path('/profile');
+        saveUserToFirebase(result.user);
       }).catch(function(error) {
         console.error("Authentication failed:", error);
       });
     };
 
-  }]);
+  });
