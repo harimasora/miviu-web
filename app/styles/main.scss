@@ -14,10 +14,18 @@
   padding: 0.2em 0;
 }
 
-body {
+.page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.fixed-header {
+  display: none;
+}
+
+.nav-icon {
+  display: none;
 }
 
 .header {
@@ -90,10 +98,8 @@ body {
 /*==========  Profile  ==========*/
 
 .profile {
-  background-image: url('../images/profile.jpg');
+  background: url('../images/profile-placeholder.svg') no-repeat 50% 50%;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
   display: flex;
   flex-direction: column;
 }
@@ -143,19 +149,9 @@ body {
   height: 150px;
   border-radius: 50%;
   border: solid 5px #FFF;
-  background-image: url("../images/profile.jpg");
+  background: url("../images/profile-placeholder.svg") no-repeat 50% 50%;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-
   flex-grow: 3;
-}
-
-.cropArea {
-  background: #E4E4E4;
-  overflow: hidden;
-  width:500px;
-  height:350px;
 }
 
 /*==========  Objects  ==========*/
@@ -248,12 +244,75 @@ body {
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-  body {
+  .page-container {
     flex-direction: row;
   }
 
+  .fixed-header {
+    display: flex;
+  }
+
+  .horizontal-logo-box {
+    display: flex;
+    width: 290px;
+    height: 100px;
+    max-height: 100px;
+
+    .logo {
+      width: 100%;
+      padding: 10px 0;
+      max-width: 105px;
+    }
+
+    .logo-title-box {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+      background-color: $miviu-nav-bg-color-dark;
+    }
+
+    .logo-title {
+      align-self: center;
+      max-width: 95px;
+      max-height: 55px;
+    }
+  }
+
+  .green-fill {
+    height: 100px;
+    flex-grow: 1;
+    background-color: $miviu-nav-bg-color-light;
+  }
+
   .header {
-    background-color: #FFF;
+    width: 290px;
+
+    .header-logo {
+      display: none;
+    }
+  }
+
+  .main-nav {
+    flex-direction: column;
+    text-indent: 70px;
+
+    li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      position: relative;
+
+      &:before {
+        content: '';
+      }
+    }
+
+    .nav-icon {
+      display: block;
+      position: absolute;
+      top: 19px;
+      left: 40px;
+    }
+
   }
 }
 

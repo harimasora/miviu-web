@@ -22,20 +22,32 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-controller="HeaderController">
-      <div class="header-logo">
-        <a ng-href="/"><img src="images/vertical-logo.svg" alt="Miviu logotype"></a>
+    <div class="fixed-header">
+      <div class="horizontal-logo-box">
+        <img src="images/miviu-logo.svg" class="logo"/>
+        <div class="logo-title-box">
+          <img src="images/miviu-text.svg" class="logo-title"/>
+        </div>
       </div>
-      <ul class="main-nav">
-        <li ng-if="currentAuth" ng-class="{ active: isActive('/profile')}"><a ng-href="/profile">Perfil</a></li>
-        <li ng-if="currentAuth" ng-class="{ active: isActive('/objects')}"><a ng-href="/objects">Objetos</a></li>
-        <li ng-class="{ active: isActive('/search')}"><a ng-href="/search">Buscar</a></li>
-        <li ng-if="currentAuth" ng-click="signOut()"><a>Sair</a></li>
-        <li ng-if="!currentAuth" ng-class="{ active: isActive('/login')}"><a ng-href="/login">Entrar</a></li>
-      </ul>
+      <div class="green-fill"></div>
     </div>
 
-    <div ng-view="" class="container"></div>
+    <div class="page-container">
+      <div class="header" ng-controller="HeaderController">
+        <div class="header-logo">
+          <a ng-href="/"><img src="images/vertical-logo.svg" alt="Miviu logotype"></a>
+        </div>
+        <ul class="main-nav">
+          <li ng-if="currentAuth" ng-class="{ active: isActive('/profile')}"><img class="nav-icon" src="images/nav-profile-icon.svg"><a ng-href="/profile">Perfil</a></li>
+          <li ng-if="currentAuth" ng-class="{ active: isActive('/objects')}"><img class="nav-icon" src="images/nav-objects-icon.svg"><a ng-href="/objects">Objetos</a></li>
+          <li ng-class="{ active: isActive('/search')}"><img class="nav-icon" src="images/nav-search-icon.svg"><a ng-href="/search">Buscar</a></li>
+          <li ng-if="currentAuth" ng-click="signOut()"><img class="nav-icon" src="images/nav-logout-icon.svg"><a>Sair</a></li>
+          <li ng-if="!currentAuth" ng-class="{ active: isActive('/login')}"><a ng-href="/login">Entrar</a></li>
+        </ul>
+      </div>
+
+      <div ng-view="" class="container"></div>
+    </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

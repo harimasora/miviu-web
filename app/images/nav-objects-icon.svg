@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="18px" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>nav-objects-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="SistemaWeb" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="perfil" transform="translate(-50.000000, -246.000000)">
+            <g id="Group-5" transform="translate(45.000000, 235.000000)">
+                <g id="nav-objects-icon" transform="translate(0.000000, 5.000000)">
+                    <polygon id="Stroke-1" stroke-opacity="0.00784313771" stroke="#000000" stroke-width="1.33333335e-11" points="0 0 29.9999981 0 29.9999981 29.9999981 0 29.9999981"></polygon>
+                    <path d="M17.4999989,21.2499987 L4.9999997,21.2499987 L4.9999997,23.7499986 L17.4999989,23.7499986 L17.4999989,21.2499987 L17.4999989,21.2499987 Z M24.9999985,11.2499993 L4.9999997,11.2499993 L4.9999997,13.7499992 L24.9999985,13.7499992 L24.9999985,11.2499993 L24.9999985,11.2499993 Z M4.9999997,18.7499989 L24.9999985,18.7499989 L24.9999985,16.249999 L4.9999997,16.249999 L4.9999997,18.7499989 L4.9999997,18.7499989 Z M4.9999997,6.24999962 L4.9999997,8.74999947 L24.9999985,8.74999947 L24.9999985,6.24999962 L4.9999997,6.24999962 L4.9999997,6.24999962 Z" id="Fill-2" fill="#000000"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
