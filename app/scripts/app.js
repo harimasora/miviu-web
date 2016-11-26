@@ -48,6 +48,16 @@ angular
           }]
         }
       })
+      .when('/profile/edit', {
+        templateUrl: 'views/profileEdit.html',
+        controller: 'ProfileCtrl',
+        controllerAs: 'profile',
+        resolve: {
+          "currentAuth": ["Auth", function(Auth) {
+            return Auth.$requireSignIn();
+          }]
+        }
+      })
       .when('/search', {
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl',

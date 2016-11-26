@@ -8,13 +8,13 @@
  * Controller of the miviuApp
  */
 angular.module('miviuApp')
-  .controller('ProfileCtrl', function ($scope, Profile, currentAuth) {
+  .controller('ProfileCtrl', function ($scope, $location, Profile, currentAuth) {
     $scope.user = Profile(currentAuth.uid);
 
     // Set user display data
     $scope.user.$watch(function(event) {
-      $scope.user.name = $scope.user.name ? $scope.user.name : "\<Sem nome\>";
-      $scope.user.phone = $scope.user.phone ? $scope.user.phone : "\<Sem telefone registrado\>";
+      $scope.user.nameMessage = $scope.user.name ? $scope.user.name : "\<Sem nome\>";
+      $scope.user.phoneMessage = $scope.user.phone ? $scope.user.phone : "\<Sem telefone registrado\>";
       $scope.user.objectsMessage = objectsMessage();
 
       function objectsMessage(){
@@ -38,4 +38,44 @@ angular.module('miviuApp')
         return objectsMessage;
       }
     });
+
+    $scope.saveUser = function(){
+
+      function save() {
+        $scope.user.$save()
+          .then(function () {
+            $location.path('/profile');
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      }
+      function uploadPic(file) {
+        var filename = $scope.user.$id + ".jpg";
+        var uploadTask = firebase.storage().ref("userimages").child(filename).put(file);
+
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on('state_changed', function(snapshot){
+          // Observe state change events such as progress, pause, and resume
+          // See below for more detail
+        }, function(error) {
+          // Handle unsuccessful uploads
+          console.log(error);
+        }, function() {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          $scope.user.photoURL = uploadTask.snapshot.downloadURL;
+          save();
+        });
+      }
+
+      if ($scope.picFile) {
+        uploadPic($scope.picFile);
+      } else {
+        save();
+      }
+    }
   });

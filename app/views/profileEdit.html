@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="signup-image-area">
+    <div ng-if="!picFile">
+      <div ng-if="user.photoURL" ngf-background="user.photoURL" class="img-round-sm"></div>
+      <div ng-if="!user.photoURL" class="img-round-sm"></div>
+    </div>
+    <div ng-if="picFile" ngf-background="picFile" class="img-round-sm"></div>
+    <button ngf-select ng-model="picFile" name="file" ngf-capture="'camera'" ngf-keep="false" accept="image/*">Upload Photo</button>
+    <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+  </div>
+  <div class="login-main-area">
+    <form class="login-form">
+      <label for="nameInput">Nome</label>
+      <input type="text" id="nameInput" ng-model="user.name">
+      <label for="emailInput">Email</label>
+      <input type="text" id="emailInput" ng-model="user.email">
+      <label for="phoneInput">Número</label>
+      <input type="text" id="phoneInput" ng-model="user.phone">
+      <div class="btn-signup-group">
+        <a ng-href="/profile">Cancelar</a>
+        <a href="" ng-click="saveUser()">Confirmar</a>
+      </div>
+    </form>
+  </div>
+</div>
