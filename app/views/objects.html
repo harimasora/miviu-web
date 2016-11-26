@@ -2,17 +2,18 @@
   <div class="overlay">
     <div class="content">
       <div class="img-round-sm"></div>
-      <p class="name">{{user.name}}</p>
+      <p class="name">{{user.nameMessage}}</p>
       <p class="object">{{user.objectsMessage}}</p>
       <div ng-show="user.objects" class="objects list">
+
         <div ng-repeat="object in user.objects" style="background-color: white">
           <img ng-src="{{object.photoURL}}">
           <p style="color: black">{{object.desc}}</p>
-          <p style="color: black">miviu.com.br/tag/<a style="color: green" ng-repeat="object in user.objects" ng-href="/tag/{{object.code}}">{{object.code}}</a></p>
+          <p style="color: black">miviu.com.br/tag/<a style="color: green" ng-href="/tag/{{object.code}}">{{object.code}}</a></p>
         </div>
       </div>
       <p>Gostaria de adicionar um novo objeto?</p>
-      <button>Adicionar Objeto</button>
+      <a href="/objects/new">Adicionar Objeto</a>
     </div>
   </div>
 </div>

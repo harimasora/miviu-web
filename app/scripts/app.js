@@ -73,6 +73,16 @@ angular
           }]
         }
       })
+      .when('/objects/new', {
+        templateUrl: 'views/objectsNew.html',
+        controller: 'ObjectsCtrl',
+        controllerAs: 'objects',
+        resolve: {
+          "currentAuth": ["Auth", function(Auth) {
+            return Auth.$requireSignIn();
+          }]
+        }
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
