@@ -1,7 +1,8 @@
-<div class="profile">
+<div ngf-background="user.photoURL" class="profile">
   <div class="overlay">
     <div class="content">
-      <div class="img-round-sm"></div>
+      <div ng-if="!user.photoURL" class="img-round-sm"></div>
+      <div ng-if="user.photoURL" ngf-background="user.photoURL" class="img-round-sm"></div>
       <p class="name">{{user.nameMessage}}</p>
       <p class="email">{{user.email}}</p>
       <p class="phone">{{user.phoneMessage}}</p>
