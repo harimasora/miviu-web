@@ -73,6 +73,11 @@ angular
         controller: 'SignupCtrl',
         controllerAs: 'signup'
       })
+      .when('/tag/:id', {
+        templateUrl: 'views/tag.html',
+        controller: 'TagCtrl',
+        controllerAs: 'tag'
+      })
       .otherwise({
         redirectTo: '/'
       });
