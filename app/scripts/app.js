@@ -27,6 +27,9 @@ angular
       if (error === "AUTH_REQUIRED") {
         $location.path("/");
       }
+      if (error === "NO_OWNER_ACCESS") {
+        toastr.error("Você não possui permissão para acessar esta página.", 'Acesso Negado');
+      }
     });
   }])
 
@@ -83,6 +86,28 @@ angular
           }]
         }
       })
+      .when('/objects/:id/edit', {
+        templateUrl: 'views/objectsEdit.html',
+        controller: 'ObjectsEditCtrl',
+        controllerAs: 'objectsEdit',
+        resolve: {
+          "currentAuth": ["Auth", function(Auth) {
+            return Auth.$requireSignIn();
+          }],
+          "currentObject": function(Object, $route) {
+            return Object($route.current.params.id)
+          },
+          //Here i check if a user has admin rights, note that i pass currentAuth and waitForAuth to this function to make sure those are resolves before this function
+          "canAccess": function (Auth, Rights, $q) {
+            var currentAuthPromise = Auth.$requireSignIn();
+            var waitForAuthPromise = Auth.$waitForSignIn();
+            return $q.all([currentAuthPromise, waitForAuthPromise]).then(function(results){
+              var currentAuth = results[0];
+              return Rights.hasOwnerAccess(currentAuth);
+            });
+          }
+        }
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
@@ -102,10 +127,3 @@ angular
         redirectTo: '/'
       });
   })
-
-  // let's create a re-usable factory that generates the $firebaseAuth instance
-  .factory("Auth", ["$firebaseAuth",
-    function($firebaseAuth) {
-      return $firebaseAuth();
-    }
-  ]);

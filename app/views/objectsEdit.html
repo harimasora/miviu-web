@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="object-image-area">
+    <div ng-if="!picFile">
+      <div ng-if="objectModel.photoURL" ngf-background="objectModel.photoURL" class="img-round-sm"></div>
+      <div ng-if="!objectModel.photoURL" class="img-round-sm"></div>
+    </div>
+    <div ng-if="picFile" ngf-background="picFile" class="img-round-sm"></div>
+    <button ngf-select ng-model="picFile" name="file" ngf-capture="'camera'" ngf-keep="false" accept="image/*">Selecionar foto</button>
+    <button ng-click="picFile = null" ng-show="picFile">Remover</button>
+  </div>
+  <div class="object-main-area">
+    <form class="object-form">
+      <p>TAG: {{objectModel.code}}</p>
+      <label for="descInput">Descrição</label>
+      <input type="text" id="descInput" ng-model="objectModel.desc">
+      <div class="btn-group">
+        <a ng-href="/objects">Cancelar</a>
+        <button ng-click="editObject()">Confirmar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -7,9 +7,10 @@
       <div ng-show="user.objects" class="objects list">
 
         <div ng-repeat="object in user.objects" style="background-color: white">
-          <img ng-src="{{object.photoURL}}">
-          <p style="color: black">{{object.desc}}</p>
-          <p style="color: black">miviu.com.br/tag/<a style="color: green" ng-href="/tag/{{object.code}}">{{object.code}}</a></p>
+          <img style="max-width: 200px" ng-src="{{object.photoURL}}">
+          <p>{{object.desc}}</p>
+          <p>miviu.com.br/tag/<a style="color: green" ng-href="/tag/{{object.code}}">{{object.code}}</a></p>
+          <a ng-href="/objects/{{object.code}}/edit">Editar</a>
         </div>
       </div>
       <p>Gostaria de adicionar um novo objeto?</p>
