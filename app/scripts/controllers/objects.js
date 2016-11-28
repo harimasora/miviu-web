@@ -57,15 +57,14 @@ angular.module('miviuApp')
           else {
             if ($scope.object.prop == $scope.user.$id) {
               // Is current user
-              // Redirect to Edit ?
-              console.log("O código do objeto que você está tentando registrar já está em uso.");
+              toastr.warning('Você já registrou esse código.', 'Código já registrado.');
             } else {
               // Is another user
-              console.log("O código do objeto que você está tentando registrar já está em uso.");
+              toastr.error('Este código já foi registrado por outro usuário.', 'Código já registrado.');
             }
           }
         } else {
-          console.log("Este código não existe.");
+          toastr.warning('Este código não existe.');
         }
       });
 
@@ -113,6 +112,7 @@ angular.module('miviuApp')
             $scope.user.$save()
               .then(function(){
                 $location.path('/objects');
+                toastr.success('Objeto registrado com sucesso!')
               })
               .catch(function (error) {
                 console.log(error);

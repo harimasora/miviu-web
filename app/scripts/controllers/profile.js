@@ -45,6 +45,7 @@ angular.module('miviuApp')
         $scope.user.$save()
           .then(function () {
             $location.path('/profile');
+            toastr.success('Perfil atualizado com sucesso!')
           })
           .catch(function (error) {
             console.error(error);

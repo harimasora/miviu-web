@@ -11,11 +11,15 @@
     "angular-touch": "^1.4.0",
     "normalize-css": "^5.0.0",
     "angularfire": "^2.1.0",
-    "ng-file-upload": "^12.2.13"
+    "ng-file-upload": "^12.2.13",
+    "toastr": "^2.1.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "miviuApp"
+  "moduleName": "miviuApp",
+  "resolutions": {
+    "jquery": "^3.1.1"
+  }
 }
