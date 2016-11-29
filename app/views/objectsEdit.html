@@ -18,5 +18,9 @@
         <button ng-click="editObject()">Confirmar</button>
       </div>
     </form>
+    <div ng-if="!uploadStatus.completed">
+      <small><em>Enviando imagem... ({{uploadStatus.totalBytes / 1024 / 1024 | number:2}} Mb)</em></small>
+      <uib-progressbar class="progress-striped active" type="success" max="100" value="uploadStatus.progress">{{uploadStatus.progress | number:0}} %</uib-progressbar>
+    </div>
   </div>
 </div>
