@@ -11,6 +11,7 @@
 angular
   .module('miviuApp', [
     'ngAnimate',
+    'ui.bootstrap',
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -29,6 +30,7 @@ angular
       }
       if (error === "NO_OWNER_ACCESS") {
         toastr.error("Você não possui permissão para acessar esta página.", 'Acesso Negado');
+        $location.path("/");
       }
     });
   }])

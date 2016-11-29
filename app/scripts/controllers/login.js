@@ -8,7 +8,7 @@
  * Controller of the miviuApp
  */
 angular.module('miviuApp')
-  .controller('LoginCtrl', function ($scope, $location, Profile, Auth) {
+  .controller('LoginCtrl', function ($scope, $location, $uibModal, Profile, Auth) {
 
     $scope.credentials = {};
 
@@ -62,5 +62,32 @@ angular.module('miviuApp')
         console.error("Authentication failed:", error);
       });
     };
+
+    $scope.sendResetEmail = function(email) {
+      Auth.$sendPasswordResetEmail(email)
+        .then(function () {
+          toastr.success('Você receberá as instruições para redefinir a senha de ' + $scope.credentials.email + ' em seu email.', 'Email enviado');
+          $scope.modalInstance.close();
+        })
+        .catch(function(error){
+          console.log(error);
+          switch (error.code){
+            case 'auth/invalid-email':
+              toastr.error('Formatação do email inválida', 'Erro ao enviar o email'); break;
+            case 'auth/user-not-found':
+              toastr.error('Não foi encontrado nenhua conta com este email.', 'Erro ao enviar o email'); break;
+            default:
+              toastr.error(error.message, 'Erro ao enviar o email'); $scope.modalInstance.close(); break;
+          }
+        })
+    };
+
+    $scope.openModal = function () {
+      $scope.modalInstance = $uibModal.open({
+        templateUrl: 'views/_resetPasswordModal.html',
+        controller: 'LoginCtrl',
+        scope: $scope
+      });
+    }
 
   });
