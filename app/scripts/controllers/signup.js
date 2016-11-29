@@ -10,6 +10,13 @@
 angular.module('miviuApp')
   .controller('SignupCtrl', function ($scope, $location, Auth, Profile) {
 
+    $scope.uploadStatus = {
+      completed: true,
+      progress: 0,
+      bytesTransferred: 0,
+      totalBytes: 0
+    };
+
     $scope.credentials = {};
 
     function saveUserToFirebase(user) {
@@ -42,6 +49,7 @@ angular.module('miviuApp')
       function uploadPic(file) {
         var filename = user.uid + ".jpg";
         var uploadTask = firebase.storage().ref("userimages").child(filename).put(file);
+        $scope.uploadStatus.completed = false;
 
         // Register three observers:
         // 1. 'state_changed' observer, called any time the state changes
@@ -50,14 +58,20 @@ angular.module('miviuApp')
         uploadTask.on('state_changed', function(snapshot){
           // Observe state change events such as progress, pause, and resume
           // See below for more detail
+          $scope.$apply(function(){
+            $scope.uploadStatus.totalBytes = snapshot.totalBytes;
+            $scope.uploadStatus.bytesTransferred = snapshot.bytesTransferred;
+            $scope.uploadStatus.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          });
         }, function(error) {
           // Handle unsuccessful uploads
           console.log(error);
+          $scope.uploadStatus.completed = true;
         }, function() {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           $scope.profile.photoURL = uploadTask.snapshot.downloadURL;
-          console.log($scope.profile.photoURL);
+          $scope.uploadStatus.completed = true;
           buildProfile();
           save();
         });
