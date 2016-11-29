@@ -5,7 +5,8 @@
   <div class="search-main-area">
     <div class="search-area">
       <p class="">miviu.com.br<span class="white">/tag/</span></p>
-      <input class="search-input" type="text"/>
+      <input class="search-input" type="text" ng-model="code"/>
+      <button ng-click="searchTag(code)">Pesquisar</button>
     </div>
     <p>Se você achou algum objeto basta colocar o final de sua URL para achar o seu dono.</p>
   </div>

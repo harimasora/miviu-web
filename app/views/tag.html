@@ -10,4 +10,7 @@
     <p class="phone">{{owner.phone}}</p>
     <p>Encontrou este objeto? Por favor ajude seu dono a revê-lo novamente.</p>
   </div>
+  <div ng-if="!object">
+    <p>Nenhum objeto com esse código foi encontrado</p>
+  </div>
 </div>

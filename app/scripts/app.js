@@ -32,6 +32,10 @@ angular
         toastr.error("Você não possui permissão para acessar esta página.", 'Acesso Negado');
         $location.path("/");
       }
+      if (error === "NO_TAG_FOUND") {
+        toastr.warning("Não foi possível localizar esta tag.", 'Tag incorreta');
+        $location.path("/search");
+      }
     });
   }])
 
@@ -123,7 +127,12 @@ angular
       .when('/tag/:id', {
         templateUrl: 'views/tag.html',
         controller: 'TagCtrl',
-        controllerAs: 'tag'
+        controllerAs: 'tag',
+        resolve: {
+          "currentObject": function(Tag) {
+            return Tag.findObject()
+          }
+        }
       })
       .otherwise({
         redirectTo: '/'
