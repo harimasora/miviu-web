@@ -1,6 +1,7 @@
 <div class="overlay">
   <div class="double-pic">
-
+    <div ngf-background="object.photoURL" class="img-round-sm"></div>
+    <div ngf-background="owner.photoURL" class="img-round-sm"></div>
   </div>
   <div class="info-box">
     <h2 class="description">{{object.desc}}</h2>
@@ -9,8 +10,5 @@
     <p class="email">{{owner.email}}</p>
     <p class="phone">{{owner.phone}}</p>
     <p>Encontrou este objeto? Por favor ajude seu dono a revê-lo novamente.</p>
-  </div>
-  <div ng-if="!object">
-    <p>Nenhum objeto com esse código foi encontrado</p>
   </div>
 </div>
