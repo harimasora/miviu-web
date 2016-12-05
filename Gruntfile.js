@@ -76,10 +76,20 @@ module.exports = function (grunt) {
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
         livereload: 35729,
-        middleware: function (connect, options) {
-          var optBase = (typeof options.base === 'string') ? [options.base] : options.base;
-          return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(
-            optBase.map(function(path){ return connect.static(path); }));
+        middleware: function (connect) {
+          return [
+            modRewrite(['^[^\\.]*$ /index.html [L]']),
+            connect.static('.tmp'),
+            connect().use(
+              '/bower_components',
+              connect.static('./bower_components')
+            ),
+            connect().use(
+              '/app/styles',
+              connect.static('./app/styles')
+            ),
+            connect.static(appConfig.app)
+          ];
         }
       },
       livereload: {
