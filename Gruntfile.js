@@ -75,44 +75,49 @@ module.exports = function (grunt) {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        livereload: 35729,
-        middleware: function (connect) {
-          return [
-            modRewrite(['^[^\\.]*$ /index.html [L]']),
-            connect.static('.tmp'),
-            connect().use(
-              '/bower_components',
-              connect.static('./bower_components')
-            ),
-            connect().use(
-              '/app/styles',
-              connect.static('./app/styles')
-            ),
-            connect.static(appConfig.app)
-          ];
-        }
+        livereload: 35729
       },
       livereload: {
         options: {
           open: true,
-          base: [
-            '.tmp',
-            '<%= yeoman.app %>'
-          ]
+          middleware: function (connect, options) {
+            var middlewares = [];
+            middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]'])); //Matches everything that does not contain a '.' (period)
+            middlewares.push(connect.static('.tmp'))
+            middlewares.push(connect().use(
+              '/bower_components',
+              connect.static('./bower_components')))
+            middlewares.push(connect().use(
+              '/app/styles',
+              connect.static('./app/styles')))
+            middlewares.push(connect.static(appConfig.app))
+            options.base.forEach(function(base) {
+              middlewares.push(connect.static(base));
+            });
+            return middlewares;
+
+          },
         }
       },
       test: {
         options: {
           port: 9001,
-          base: [
-            '.tmp',
-            'test',
-            '<%= yeoman.app %>'
-          ]
+          middleware: function (connect) {
+            return [
+              connect.static('.tmp'),
+              connect.static('test'),
+              connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+              ),
+              connect.static(appConfig.app)
+            ];
+          }
         }
       },
       dist: {
         options: {
+          open: true,
           base: '<%= yeoman.dist %>'
         }
       }
@@ -211,14 +216,14 @@ module.exports = function (grunt) {
         fileTypes:{
           js: {
             block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-              detect: {
-                js: /'(.*\.js)'/gi
-              },
-              replace: {
-                js: '\'{{filePath}}\','
-              }
+            detect: {
+              js: /'(.*\.js)'/gi
+            },
+            replace: {
+              js: '\'{{filePath}}\','
             }
           }
+        }
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
