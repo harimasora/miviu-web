@@ -99,6 +99,119 @@
   }
 }
 
+.diagonal-positive-green-bg {
+  background-image: url("../images/diagonal-light-rectangle.svg");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 554px;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+}
+
+/*==========  Sign in  ==========*/
+
+.login-main-area {
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.login-logo-area {
+  img {
+    width: 75%;
+    margin: 10px 12.5% 0;
+  }
+
+  .heading {
+    background-color: $miviu-black-bg-color;
+    color: $miviu-btn-text-color;
+    padding: 10px 20px;
+    margin: -10px 0 0 0;
+  }
+}
+
+.panel-login {
+  box-shadow: rgba(0,0,0,0.5) 0 2px 7px;
+  border: 0 solid transparent;
+  margin-bottom: 0;
+}
+
+.login-form {
+  padding: 5% 5% 0;
+}
+
+.email-input {
+  width: 100%;
+  background-image: url('../images/user-icon-and-bar.svg');
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-attachment: scroll;
+  background-position-x: 10px;
+  background-position-y: 7px;
+  padding-left: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.password-input {
+  width: 100%;
+  background-image: url('../images/key-icon-plus-bar.svg');
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-attachment: scroll;
+  background-position-x: 10px;
+  background-position-y: 7px;
+  padding-left: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.login-providers {
+  height: 42px;
+  text-align: left;
+}
+
+.btn-facebook {
+  display: inline-block;
+  background-image: url("../images/facebook-icon.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+}
+
+.btn-google {
+  display: inline-block;
+  background-image: url("../images/google-plus-icon.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px;
+  margin-left: 10px;
+}
+
+.btn-login {
+  display: inline-block;
+  background-color: $miviu-btn-accept-color;
+  color: $miviu-btn-text-color;
+  padding: 10px 15%;
+  float: right;
+}
+
+.signup {
+  display: inline-block;
+  margin: 20px 0 10px;
+  color: $miviu-black-bg-color;
+}
+
+.forgot-password {
+  display: inline-block;
+  margin-top: 10px;
+  color: $miviu-btn-text-color;
+}
+
 /*==========  Profile  ==========*/
 
 .profile {

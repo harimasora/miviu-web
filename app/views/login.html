@@ -1,21 +1,20 @@
-<div class="container">
-  <div class="login-logo-area">
-    <img src="../images/vertical-logo.svg">
-  </div>
-  <div class="login-main-area">
-    <h3>Login</h3>
+<div class="diagonal-positive-green-bg"></div>
+<div class="login-main-area">
+  <div class="panel panel-login">
+    <div class="login-logo-area">
+      <img src="../images/skate.png">
+      <h3 class="heading">Login</h3>
+    </div>
     <form class="login-form">
-      <label for="emailInput">Email</label>
-      <input type="text" id="emailInput" ng-model="credentials.email" required>
-      <label for="passwordInput">Senha</label>
-      <input type="password" id="passwordInput" ng-model="credentials.password" required>
+      <input type="text" class="email-input" placeholder="Email" ng-model="credentials.email" required>
+      <input type="password" class="password-input" placeholder="Senha" ng-model="credentials.password" required>
       <div class="login-providers">
-        <a href="" ng-click="signInWithProvider('facebook')">Facebook</a>
-        <a href="" ng-click="signInWithProvider('google')">Gmail</a>
-        <a href="" ng-click="signIn()">Entrar</a>
+        <a href="" class="btn-facebook" ng-click="signInWithProvider('facebook')"></a>
+        <a href="" class="btn-google" ng-click="signInWithProvider('google')"></a>
+        <a href="" class="btn-login" ng-click="signIn()">Entrar</a>
       </div>
-      <a ng-href="/signup">Registrar-se</a>
+      <a ng-href="/signup" class="signup">Registrar-se</a>
     </form>
-    <button ng-click="openModal()">Esqueci minha senha</button>
   </div>
+  <a href="" class="forgot-password" ng-click="openModal()">Esqueci minha senha</a>
 </div>
